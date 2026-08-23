@@ -18,7 +18,7 @@
     html{scroll-behavior:smooth;}
     body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:#0f2236;color:var(--text);line-height:1.6;}
 
-    /* ── NAV ── */
+    /* NAV */
     nav{
       position:fixed;top:0;left:0;right:0;z-index:100;
       background:rgba(15,34,54,0.92);backdrop-filter:blur(12px);
@@ -34,7 +34,7 @@
     .nav-links .btn-nav:hover{background:#ea6c0a;}
     @media(max-width:700px){.nav-links a:not(.btn-nav){display:none;}}
 
-    /* ── HERO ── */
+    /* HERO */
     .hero{
       min-height:100vh;
       display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -53,17 +53,15 @@
       margin-bottom:44px;
       background:rgba(249,115,22,0.06);
     }
-
-    /* Logo + wordmark container */
     .hero-identity{
       display:flex;flex-direction:column;align-items:center;
       gap:0;margin-bottom:28px;
     }
     .hero-icon{
-      width:110px;height:110px;
+      width:120px;height:120px;
       object-fit:contain;
       filter:drop-shadow(0 8px 32px rgba(249,115,22,0.45)) drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-      margin-bottom:20px;
+      margin-bottom:22px;
       animation:floatUp .6s ease both;
     }
     @keyframes floatUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -75,9 +73,7 @@
       font-size:clamp(4rem,11vw,7.5rem);
       font-weight:900;
       letter-spacing:0.12em;
-      color:#fff;
       line-height:1;
-      /* gradient fill */
       background:linear-gradient(135deg,#ffffff 30%,#facc15 80%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
@@ -91,14 +87,11 @@
       color:var(--muted);
       margin-top:6px;
     }
-
-    /* divider */
     .hero-divider{
       width:48px;height:2px;
       background:linear-gradient(90deg,transparent,var(--orange),transparent);
       border:none;margin:22px 0;
     }
-
     .hero-tagline{
       font-size:clamp(1rem,2vw,1.25rem);
       font-style:italic;
@@ -120,7 +113,6 @@
       animation:floatUp .6s .3s ease both;
     }
     .hero-body strong{color:#c9ddf0;}
-
     .hero-cta{
       display:flex;gap:12px;flex-wrap:wrap;
       justify-content:center;margin-bottom:56px;
@@ -143,7 +135,6 @@
       backdrop-filter:blur(6px);
     }
     .btn-secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.35);transform:translateY(-2px);}
-
     .hero-orgs{
       display:flex;flex-wrap:wrap;justify-content:center;
       border-top:1px solid var(--border);padding-top:24px;
@@ -156,7 +147,7 @@
     }
     .hero-orgs span:last-child{border-right:none;}
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     section{padding:72px 5%;}
     .section-label{font-size:0.7rem;font-weight:700;color:var(--orange);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;}
     .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:12px;}
@@ -217,7 +208,7 @@
     .integ-logos{display:flex;flex-wrap:wrap;gap:10px;}
     .integ-chip{background:rgba(30,58,95,0.45);border:1px solid var(--border);border-radius:8px;padding:9px 15px;font-size:0.78rem;font-weight:600;color:var(--text);}
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer{
       background:#060e1a;
       padding:40px 5% 28px;
@@ -229,7 +220,7 @@
       gap:12px;margin-bottom:4px;
     }
     .footer-brand img{
-      width:36px;height:36px;object-fit:contain;
+      width:38px;height:38px;object-fit:contain;
       filter:drop-shadow(0 2px 8px rgba(249,115,22,0.3));
       opacity:.92;
     }
@@ -290,7 +281,7 @@
 
   <div class="hero-identity">
     <img
-      src="/images/pijar.png"
+      src="/images/pijar_square.png"
       alt="Logo PIJAR"
       class="hero-icon"
       fetchpriority="high"
@@ -415,7 +406,7 @@
 <footer>
   <div class="footer-brand">
     <img
-      src="/images/pijar.png"
+      src="/images/pijar_square.png"
       alt="Logo PIJAR"
       loading="lazy"
       onerror="this.style.display='none'"
