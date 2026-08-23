@@ -17,9 +17,8 @@
 
     /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,34,54,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:60px;}
-    .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
-    .nav-brand img{width:28px;height:28px;object-fit:contain;flex-shrink:0;}
-    .nav-brand-name{font-size:1.15rem;font-weight:800;color:var(--yellow);letter-spacing:0.06em;}
+    .nav-brand{display:flex;align-items:center;text-decoration:none;}
+    .nav-brand img{height:32px;width:auto;object-fit:contain;}
     .nav-links{display:flex;gap:6px;align-items:center;}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;padding:6px 10px;border-radius:6px;transition:all 0.2s;white-space:nowrap;}
     .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.07);}
@@ -32,12 +31,14 @@
       background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(249,115,22,0.12) 0%,transparent 70%),
       repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,0.02) 40px),
       repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,0.02) 40px),#0f2236;}
-    .hero-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(249,115,22,0.4);border-radius:99px;padding:5px 14px;font-size:0.75rem;color:var(--orange);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:28px;}
-    .hero-logo{width:88px;height:88px;object-fit:contain;margin-bottom:20px;filter:drop-shadow(0 4px 20px rgba(249,115,22,0.35));}
-    .hero h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:900;letter-spacing:0.05em;color:#fff;line-height:1;}
-    .hero-tagline{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--yellow);font-style:italic;font-weight:600;margin:10px 0 16px;}
-    .hero-desc{max-width:640px;color:var(--muted);font-size:0.95rem;line-height:1.7;margin-bottom:8px;}
-    .hero-sub{font-size:0.82rem;font-weight:700;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:36px;}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(249,115,22,0.4);border-radius:99px;padding:5px 14px;font-size:0.75rem;color:var(--orange);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:32px;}
+    .hero-logo-wide{
+      max-width:380px;width:80%;height:auto;
+      object-fit:contain;
+      margin-bottom:32px;
+      filter:drop-shadow(0 6px 28px rgba(249,115,22,0.30));
+    }
+    .hero-sub{font-size:0.82rem;font-weight:700;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:28px;}
     .hero-body{max-width:680px;color:#94a3b8;font-size:0.9rem;line-height:1.75;margin-bottom:40px;}
     .hero-body strong{color:#e2e8f0;}
     .hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
@@ -114,8 +115,7 @@
     /* FOOTER */
     footer{background:#070f1a;padding:32px 5%;text-align:center;border-top:1px solid var(--border);}
     .footer-brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;}
-    .footer-brand img{width:28px;height:28px;object-fit:contain;opacity:.85;}
-    .footer-logo{font-size:1.3rem;font-weight:900;color:var(--yellow);letter-spacing:0.08em;}
+    .footer-brand img{height:28px;width:auto;object-fit:contain;opacity:.8;}
     .footer-tagline{font-size:0.78rem;color:var(--muted);margin-bottom:16px;}
     .footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
     .footer-links a{color:#475569;font-size:0.75rem;text-decoration:none;transition:color 0.2s;}
@@ -129,13 +129,12 @@
 <nav>
   <a href="#" class="nav-brand">
     <img
-      src="/images/pijar.png"
+      src="/images/pijar_wide.png"
       alt="Logo PIJAR"
-      width="28" height="28"
+      height="32"
       fetchpriority="high"
       onerror="this.style.display='none'"
     />
-    <span class="nav-brand-name">PIJAR</span>
   </a>
   <div class="nav-links">
     <a href="#filosofi">Filosofi PIJAR</a>
@@ -150,17 +149,15 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">Rancangan Aksi Perubahan · PKP Angkatan I 2026</div>
+
   <img
-    src="/images/pijar.png"
-    alt="Logo PIJAR"
-    class="hero-logo"
-    width="88" height="88"
+    src="/images/pijar_wide.png"
+    alt="PIJAR — Penguatan Inventarisasi Jaringan Aset yang Responsif"
+    class="hero-logo-wide"
     fetchpriority="high"
     onerror="this.style.display='none'"
   />
-  <h1>PIJAR</h1>
-  <p class="hero-tagline">&ldquo;Urip Kuwi Urup&rdquo;</p>
-  <p class="hero-desc">Penguatan Inventarisasi Jaringan Aset yang Responsif</p>
+
   <p class="hero-sub">Menyalakan Data, Menerangi Pelayanan</p>
   <p class="hero-body">Basis data aset dan pemeliharaan Penerangan Jalan Umum (PJU) Kota Yogyakarta yang terintegrasi dengan <strong>Jogja Smart Service (JSS)</strong> dan <strong>SIMPENJALU</strong> — dirancang ringan, mobile-first, dan siap dipakai langsung oleh tim pemeliharaan lapangan maupun koordinator di kantor.</p>
   <div class="hero-cta">
@@ -263,13 +260,12 @@
 <footer>
   <div class="footer-brand">
     <img
-      src="/images/pijar.png"
+      src="/images/pijar_wide.png"
       alt="Logo PIJAR"
-      width="28" height="28"
+      height="28"
       loading="lazy"
       onerror="this.style.display='none'"
     />
-    <span class="footer-logo">PIJAR</span>
   </div>
   <div class="footer-tagline">Urip Kuwi Urup — Menyalakan Data, Menerangi Pelayanan</div>
   <div class="footer-links">
