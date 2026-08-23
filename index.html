@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIJAR — Sistem Manajemen Aset PJU Kota Yogyakarta</title>
+  <meta name="description" content="PIJAR: Penguatan Inventarisasi Jaringan Aset yang Responsif. Basis data aset PJU Kota Yogyakarta — Menyalakan Data, Menerangi Pelayanan.">
+  <meta name="theme-color" content="#1e3a5f">
+  <style>
+    :root{
+      --navy:#1e3a5f;--navy2:#162d4a;--orange:#f97316;--yellow:#facc15;
+      --text:#e2e8f0;--muted:#94a3b8;--card:#1e3a5f;--border:rgba(255,255,255,0.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f2236;color:var(--text);line-height:1.6;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,34,54,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:60px;}
+    .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .nav-brand-logo{width:30px;height:30px;}
+    .nav-brand-name{font-size:1.15rem;font-weight:800;color:var(--yellow);letter-spacing:0.06em;}
+    .nav-links{display:flex;gap:6px;align-items:center;}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;padding:6px 10px;border-radius:6px;transition:all 0.2s;white-space:nowrap;}
+    .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.07);}
+    .nav-links .btn-nav{background:var(--orange);color:#fff!important;font-weight:600;padding:7px 14px;}
+    .nav-links .btn-nav:hover{background:#ea6c0a;}
+    @media(max-width:700px){.nav-links a:not(.btn-nav){display:none;}}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 5% 60px;
+      background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(249,115,22,0.12) 0%,transparent 70%),
+      repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,0.02) 40px),
+      repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,0.02) 40px),#0f2236;}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(249,115,22,0.4);border-radius:99px;padding:5px 14px;font-size:0.75rem;color:var(--orange);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:28px;}
+    .hero-logo{width:90px;height:90px;margin-bottom:20px;}
+    .hero h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:900;letter-spacing:0.05em;color:#fff;line-height:1;}
+    .hero-tagline{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--yellow);font-style:italic;font-weight:600;margin:10px 0 16px;}
+    .hero-desc{max-width:640px;color:var(--muted);font-size:0.95rem;line-height:1.7;margin-bottom:8px;}
+    .hero-sub{font-size:0.82rem;font-weight:700;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:36px;}
+    .hero-body{max-width:680px;color:#94a3b8;font-size:0.9rem;line-height:1.75;margin-bottom:40px;}
+    .hero-body strong{color:#e2e8f0;}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
+    .btn{display:inline-block;padding:12px 28px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;}
+    .btn-primary{background:var(--yellow);color:#0f2236;}
+    .btn-primary:hover{background:#fbbf24;transform:translateY(-1px);box-shadow:0 4px 20px rgba(250,204,21,0.3);}
+    .btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.25);}
+    .btn-secondary:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.4);}
+    .hero-orgs{display:flex;gap:0;flex-wrap:wrap;justify-content:center;border-top:1px solid var(--border);padding-top:24px;width:100%;max-width:700px;}
+    .hero-orgs span{color:#475569;font-size:0.72rem;padding:0 16px;border-right:1px solid var(--border);}
+    .hero-orgs span:last-child{border-right:none;}
+
+    /* SECTION */
+    section{padding:72px 5%;}
+    .section-label{font-size:0.72rem;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;}
+    .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:12px;}
+    .section-desc{color:var(--muted);max-width:600px;font-size:0.9rem;line-height:1.7;margin-bottom:40px;}
+
+    /* FILOSOFI */
+    #filosofi{background:#0a1a2e;}
+    .filosofi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+    .filosofi-card{background:rgba(30,58,95,0.5);border:1px solid var(--border);border-radius:12px;padding:20px;}
+    .filosofi-icon{font-size:1.6rem;margin-bottom:10px;}
+    .filosofi-card h3{font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:6px;}
+    .filosofi-card p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+    .tagline-box{background:linear-gradient(135deg,rgba(249,115,22,0.12),rgba(250,204,21,0.08));border:1px solid rgba(249,115,22,0.25);border-radius:12px;padding:24px 28px;text-align:center;}
+    .tagline-box h3{font-size:1rem;font-weight:800;color:var(--yellow);font-style:italic;margin-bottom:8px;}
+    .tagline-box p{font-size:0.85rem;color:var(--muted);line-height:1.7;}
+
+    /* TENTANG */
+    #tentang{background:#0f2236;}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+    @media(max-width:700px){.about-grid{grid-template-columns:1fr;}}
+    .about-text p{color:var(--muted);font-size:0.88rem;line-height:1.75;margin-bottom:14px;}
+    .about-text p:last-child{margin-bottom:0;}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .stat-item{background:rgba(30,58,95,0.5);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;}
+    .stat-num{font-size:1.6rem;font-weight:800;color:var(--yellow);}
+    .stat-lbl{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+
+    /* TIM */
+    #tim{background:#0a1a2e;}
+    .tim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+    .tim-card{background:rgba(30,58,95,0.4);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
+    .tim-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--orange));display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 12px;}
+    .tim-card h3{font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:4px;}
+    .tim-card p{font-size:0.75rem;color:var(--muted);line-height:1.5;}
+    .tim-badge{display:inline-block;margin-top:8px;padding:2px 10px;border-radius:99px;font-size:0.7rem;font-weight:600;background:rgba(249,115,22,0.15);color:var(--orange);border:1px solid rgba(249,115,22,0.3);}
+
+    /* MODUL */
+    #modul{background:#0f2236;}
+    .modul-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+    .modul-card{background:rgba(30,58,95,0.4);border:1px solid var(--border);border-radius:12px;padding:22px;transition:border-color 0.2s,transform 0.2s;}
+    .modul-card:hover{border-color:rgba(249,115,22,0.4);transform:translateY(-2px);}
+    .modul-icon{font-size:1.5rem;margin-bottom:10px;}
+    .modul-url{font-size:0.72rem;font-family:monospace;color:var(--orange);margin-bottom:6px;}
+    .modul-card h3{font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:6px;}
+    .modul-card p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+    .modul-badge{margin-top:10px;}
+    .badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:0.68rem;font-weight:600;}
+    .badge-live{background:rgba(5,122,85,0.2);color:#34d399;border:1px solid rgba(52,211,153,0.3);}
+    .badge-soon{background:rgba(100,116,139,0.2);color:#94a3b8;border:1px solid rgba(100,116,139,0.3);}
+
+    /* INTEGRASI */
+    #integrasi{background:#0a1a2e;}
+    .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px;}
+    .flow-step{background:rgba(30,58,95,0.4);border:1px solid var(--border);border-radius:12px;padding:18px;position:relative;}
+    .flow-num{width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;font-size:0.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+    .flow-step h3{font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:5px;}
+    .flow-step p{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+    .integ-logos{display:flex;flex-wrap:wrap;gap:12px;}
+    .integ-chip{background:rgba(30,58,95,0.5);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:0.8rem;font-weight:600;color:var(--text);}
+
+    /* FOOTER */
+    footer{background:#070f1a;padding:32px 5%;text-align:center;border-top:1px solid var(--border);}
+    .footer-logo{font-size:1.4rem;font-weight:900;color:var(--yellow);letter-spacing:0.08em;margin-bottom:6px;}
+    .footer-tagline{font-size:0.78rem;color:var(--muted);margin-bottom:16px;}
+    .footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
+    .footer-links a{color:#475569;font-size:0.75rem;text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--orange);}
+    .footer-copy{font-size:0.72rem;color:#334155;}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <svg class="nav-brand-logo" viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="20" fill="#1e3a5f"/>
+      <circle cx="20" cy="20" r="18.5" stroke="#f97316" stroke-width="1.2" fill="none"/>
+      <rect x="19" y="23" width="2" height="9" rx="1" fill="#facc15"/>
+      <ellipse cx="20" cy="22" rx="5.5" ry="2.5" fill="#facc15"/>
+      <ellipse cx="20" cy="17" rx="2.8" ry="3.8" fill="#f97316" opacity="0.9"/>
+      <ellipse cx="20" cy="15" rx="1.4" ry="2.2" fill="#facc15"/>
+    </svg>
+    <span class="nav-brand-name">PIJAR</span>
+  </a>
+  <div class="nav-links">
+    <a href="#filosofi">Filosofi PIJAR</a>
+    <a href="#tentang">Tentang PIJAR</a>
+    <a href="#tim">Tim Pemeliharaan</a>
+    <a href="#modul">Modul &amp; Subdomain</a>
+    <a href="#integrasi">Integrasi</a>
+    <a href="https://admin.pjujogja.id" class="btn-nav">Masuk Dashboard →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Rancangan Aksi Perubahan · PKP Angkatan I 2026</div>
+  <svg class="hero-logo" viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="45" fill="#1e3a5f"/>
+    <circle cx="45" cy="45" r="43" stroke="#f97316" stroke-width="2" fill="none"/>
+    <rect x="43" y="52" width="4" height="20" rx="2" fill="#facc15"/>
+    <ellipse cx="45" cy="50" rx="12" ry="5" fill="#facc15"/>
+    <ellipse cx="45" cy="38" rx="7" ry="9" fill="#f97316" opacity="0.9"/>
+    <ellipse cx="45" cy="33" rx="3.5" ry="5.5" fill="#facc15"/>
+    <!-- sinar -->
+    <line x1="45" y1="5" x2="45" y2="14" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
+    <line x1="71" y1="19" x2="65" y2="25" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
+    <line x1="19" y1="19" x2="25" y2="25" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
+  </svg>
+  <h1>PIJAR</h1>
+  <p class="hero-tagline">"Urip Kuwi Urup"</p>
+  <p class="hero-desc">Penguatan Inventarisasi Jaringan Aset yang Responsif</p>
+  <p class="hero-sub">Menyalakan Data, Menerangi Pelayanan</p>
+  <p class="hero-body">Basis data aset dan pemeliharaan Penerangan Jalan Umum (PJU) Kota Yogyakarta yang terintegrasi dengan <strong>Jogja Smart Service (JSS)</strong> dan <strong>SIMPENJALU</strong> — dirancang ringan, mobile-first, dan siap dipakai langsung oleh tim pemeliharaan lapangan maupun koordinator di kantor.</p>
+  <div class="hero-cta">
+    <a href="#modul" class="btn btn-primary">Lihat Modul Sistem</a>
+    <a href="https://admin.pjujogja.id" class="btn btn-secondary">Masuk Dashboard Admin</a>
+  </div>
+  <div class="hero-orgs">
+    <span>UPT Penerangan Jalan Umum</span>
+    <span>Dinas PUPKP Kota Yogyakarta</span>
+    <span>Pemerintah Kota Yogyakarta</span>
+    <span>LAN RI &amp; BPSDM DIY</span>
+  </div>
+</section>
+
+<!-- FILOSOFI -->
+<section id="filosofi">
+  <div class="section-label">Identitas</div>
+  <h2 class="section-title">Filosofi PIJAR</h2>
+  <p class="section-desc">Setiap elemen logo dan tagline PIJAR merepresentasikan semangat pelayanan UPT Penerangan Jalan Umum.</p>
+  <div class="filosofi-grid">
+    <div class="filosofi-card"><div class="filosofi-icon">🔥</div><h3>Nyala Api</h3><p>Melambangkan cahaya pengetahuan dan data yang menerangi, tersemat di atas bentuk lampu jalan — representasi langsung aset yang dikelola UPT PJU.</p></div>
+    <div class="filosofi-card"><div class="filosofi-icon">⭕</div><h3>Lingkaran Navy</h3><p>Melambangkan kesatuan dan tata kelola yang utuh, sementara pancaran sinar oranye menegaskan dampak layanan yang menyebar ke seluruh penjuru kota.</p></div>
+    <div class="filosofi-card"><div class="filosofi-icon">🎨</div><h3>Warna & Makna</h3><p>Navy mencerminkan kredibilitas institusi pemerintah; oranye mewakili nyala api PJU yang hangat, responsif, dan selalu siap melayani masyarakat.</p></div>
+  </div>
+  <div class="tagline-box">
+    <h3>"Urip Kuwi Urup"</h3>
+    <p>Falsafah Jawa yang bermakna <em>"hidup itu (hendaknya) menyala"</em> — menjadi manfaat dan terang bagi sesama. Menjiwai kerja UPT PJU: setiap titik lampu yang menyala adalah wujud nyata kehadiran negara dalam melayani warganya.</p>
+  </div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang">
+  <div class="section-label">Latar Belakang</div>
+  <h2 class="section-title">Tentang PIJAR</h2>
+  <p class="section-desc">Menyalakan Data, Menerangi Pelayanan — menjawab kebutuhan basis data aset PJU yang akurat, real-time, dan mudah diakses di lapangan.</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>UPT PJU merupakan unit pelaksana teknis di bawah Dinas PUPKP Kota Yogyakarta, bertanggung jawab atas pengadaan, pemeliharaan, dan pengelolaan aset jaringan PJU di seluruh wilayah Kota Yogyakarta — mendukung kenyamanan, keselamatan, dan citra Kota Yogyakarta sebagai kota budaya yang cerdas (smart city).</p>
+      <p>Selama ini, inventarisasi aset PJU masih tersebar di catatan manual dan spreadsheet yang sulit disinkronkan antar tim. PIJAR menghadirkan satu basis data terpusat yang responsif — dapat diakses via tablet/smartphone oleh tim pemeliharaan, dan dipantau secara real-time oleh koordinator, sekaligus terhubung dengan ekosistem layanan digital Kota Yogyakarta.</p>
+    </div>
+    <div>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-lbl">Sektor Wilayah</div></div>
+        <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl">Subdomain Modul</div></div>
+        <div class="stat-item"><div class="stat-num">0</div><div class="stat-lbl">Dependency Eksternal</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIM -->
+<section id="tim">
+  <div class="section-label">Sumber Daya Manusia</div>
+  <h2 class="section-title">Tim Pemeliharaan</h2>
+  <p class="section-desc">PIJAR dirancang untuk dua kelompok pengguna utama yang berkolaborasi real-time.</p>
+  <div class="tim-grid">
+    <div class="tim-card"><div class="tim-avatar">🏛️</div><h3>Koordinator / Admin</h3><p>Unsur ASN/PPPK di kantor UPT PJU. Memantau dashboard, menugaskan perbaikan, dan menyusun laporan kinerja per sektor.</p><span class="tim-badge">admin.pjujogja.id</span></div>
+    <div class="tim-card"><div class="tim-avatar">🔧</div><h3>Regu Pelaksana Lapangan</h3><p>Unsur Tenaga Teknis dan Swakelola harian lepas yang mengakses PIJAR Lapangan via tablet (Xiaomi Tab 8 Pro) atau smartphone.</p><span class="tim-badge">lapangan.pjujogja.id</span></div>
+    <div class="tim-card"><div class="tim-avatar">🗺️</div><h3>4 Sektor Wilayah</h3><p>Dibagi oleh koridor Jl. Kusumanegara s/d Jl. RE Martadinata (melintang) dan Sungai Code (membujur). Sektor 1 dimulai dari kuadran Utara–Timur, searah jarum jam.</p><span class="tim-badge">wilayah.pjujogja.id</span></div>
+  </div>
+</section>
+
+<!-- MODUL -->
+<section id="modul">
+  <div class="section-label">Arsitektur</div>
+  <h2 class="section-title">Modul &amp; Subdomain</h2>
+  <p class="section-desc">Satu domain utama <strong>pjujogja.id</strong>, terhubung ke subdomain layanan yang sedang dan akan dibangun.</p>
+  <div class="modul-grid">
+    <div class="modul-card"><div class="modul-icon">📊</div><div class="modul-url">admin.pjujogja.id</div><h3>PIJAR Admin</h3><p>Ringkasan aset, status pemeliharaan, kinerja 4 tim pemeliharaan per sektor, dan pelaporan untuk Koordinator/Admin kantor UPT PJU.</p><div class="modul-badge"><span class="badge badge-live">● Live</span></div></div>
+    <div class="modul-card"><div class="modul-icon">📱</div><div class="modul-url">lapangan.pjujogja.id</div><h3>PIJAR Lapangan</h3><p>Formulir survei, pelaporan kerusakan, dan pembaruan status titik PJU langsung dari lokasi via tablet/HP oleh tim pemeliharaan sektor masing-masing.</p><div class="modul-badge"><span class="badge badge-live">● Live</span></div></div>
+    <div class="modul-card"><div class="modul-icon">📦</div><div class="modul-url">pins.pjujogja.id</div><h3>PINS</h3><p>Pencatatan Inventaris Sarana &amp; Suku Cadang — pelacakan stok tiang, lampu, panel, dan material pemeliharaan.</p><div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div></div>
+    <div class="modul-card"><div class="modul-icon">🗺️</div><div class="modul-url">peta.pjujogja.id</div><h3>Peta Aset PJU</h3><p>Visualisasi peta titik PJU se-Kota Yogyakarta berbasis Leaflet.js per sektor, lengkap status kondisi &amp; riwayat perbaikan.</p><div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div></div>
+    <div class="modul-card"><div class="modul-icon">⚙️</div><div class="modul-url">api.pjujogja.id</div><h3>PIJAR API</h3><p>Layanan API terpusat (Flask/FastAPI) yang menghubungkan seluruh modul PIJAR dengan MariaDB dan sistem eksternal.</p><div class="modul-badge"><span class="badge badge-live">● Live</span></div></div>
+    <div class="modul-card"><div class="modul-icon">📈</div><div class="modul-url">laporan.pjujogja.id</div><h3>Laporan Kinerja</h3><p>Rekap kinerja pemeliharaan per sektor, umur aset, dan indikator layanan PJU untuk mendukung pengambilan keputusan.</p><div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div></div>
+  </div>
+</section>
+
+<!-- INTEGRASI -->
+<section id="integrasi">
+  <div class="section-label">Ekosistem Digital</div>
+  <h2 class="section-title">Integrasi Sistem</h2>
+  <p class="section-desc">PIJAR dirancang agar data aset dan pemeliharaan PJU dapat saling bertukar informasi dengan platform layanan digital Pemerintah Kota Yogyakarta.</p>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><h3>Aduan / Temuan</h3><p>Aduan warga via JSS atau temuan rutin tim pemeliharaan tercatat otomatis lengkap koordinat sektor.</p></div>
+    <div class="flow-step"><div class="flow-num">2</div><h3>Pengecekan Lapangan</h3><p>Tim pemeliharaan sektor terkait memeriksa titik PJU dan memperbarui status via PIJAR Lapangan (tablet/HP).</p></div>
+    <div class="flow-step"><div class="flow-num">3</div><h3>Sinkronisasi Data</h3><p>Data aset &amp; riwayat pemeliharaan tersimpan real-time di MariaDB melalui API PIJAR.</p></div>
+    <div class="flow-step"><div class="flow-num">4</div><h3>Monitoring &amp; Laporan</h3><p>Koordinator memantau dashboard per sektor, menugaskan perbaikan ke tim terkait, dan menyusun laporan kinerja.</p></div>
+  </div>
+  <div class="integ-logos">
+    <div class="integ-chip">🏙️ Jogja Smart Service (JSS)</div>
+    <div class="integ-chip">📋 SIMPENJALU</div>
+    <div class="integ-chip">🗄️ MariaDB</div>
+    <div class="integ-chip">🐍 Python Flask</div>
+    <div class="integ-chip">🗺️ Leaflet.js</div>
+    <div class="integ-chip">🌐 OpenStreetMap</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⚡ PIJAR</div>
+  <div class="footer-tagline">Urip Kuwi Urup — Menyalakan Data, Menerangi Pelayanan</div>
+  <div class="footer-links">
+    <a href="https://admin.pjujogja.id">Dashboard Admin</a>
+    <a href="https://api.pjujogja.id/api/health">API Health</a>
+    <a href="#filosofi">Filosofi</a>
+    <a href="#modul">Modul</a>
+  </div>
+  <div class="footer-copy">UPT PJU · Dinas PUPKP Kota Yogyakarta · Perwal Kota Yogyakarta No. 50/2022</div>
+</footer>
+
+</body>
+</html>
