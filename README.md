@@ -1,13 +1,25 @@
-# PIJAR — *Urip Kuwi Urup*
-
+<!-- HERO -->
 <p align="center">
   <img src="https://pjujogja.id/images/pijar_square.png" alt="Logo PIJAR" width="96">
 </p>
 
+<h1 align="center">PIJAR</h1>
 <p align="center">
-  <strong>Penguatan Inventarisasi Jaringan Aset yang Responsif</strong><br>
-  <em>Menyalakan Data, Menerangi Pelayanan</em>
+  <sub><b>Penguatan Inventarisasi Jaringan Aset yang Responsif</b></sub>
 </p>
+
+<p align="center">
+  ────────────────────────
+</p>
+
+<p align="center">
+  <em><b>“Urip Kuwi Urup”</b></em>
+</p>
+<p align="center">
+  <b>MENYALAKAN DATA &nbsp;&middot;&nbsp; MENERANGI PELAYANAN</b>
+</p>
+
+---
 
 Landing page resmi sistem **PIJAR** — basis data aset dan pemeliharaan Penerangan Jalan Umum (PJU) Kota Yogyakarta, terintegrasi dengan Jogja Smart Service (JSS) dan SIMPENJALU.
 
