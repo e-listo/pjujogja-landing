@@ -187,8 +187,17 @@
     /* MODUL */
     #modul{background:#0f2236;}
     .modul-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
-    .modul-card{background:rgba(30,58,95,0.38);border:1px solid var(--border);border-radius:12px;padding:22px;transition:border-color .2s,transform .2s;}
+    .modul-card{
+      background:rgba(30,58,95,0.38);border:1px solid var(--border);
+      border-radius:12px;padding:22px;
+      transition:border-color .2s,transform .2s;
+      text-decoration:none;color:inherit;
+      display:block;
+    }
     .modul-card:hover{border-color:rgba(249,115,22,0.38);transform:translateY(-2px);}
+    a.modul-card{cursor:pointer;}
+    a.modul-card:hover{border-color:rgba(249,115,22,0.65);box-shadow:0 4px 24px rgba(249,115,22,0.12);}
+    div.modul-card{cursor:default;opacity:.85;}
     .modul-icon{font-size:1.4rem;margin-bottom:10px;}
     .modul-url{font-size:0.7rem;font-family:monospace;color:var(--orange);margin-bottom:6px;}
     .modul-card h3{font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:6px;}
@@ -262,7 +271,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-brand">
-    <img src="/images/pijar_wide.png" alt="Logo PIJAR" height="32"
+    <img src="https://pjujogja.id/images/pijar_wide.png" alt="Logo PIJAR" height="32"
       fetchpriority="high" onerror="this.style.display='none'" />
   </a>
   <div class="nav-links">
@@ -281,7 +290,7 @@
 
   <div class="hero-identity">
     <img
-      src="/images/pijar_square.png"
+      src="https://pjujogja.id/images/pijar_square.png"
       alt="Logo PIJAR"
       class="hero-icon"
       fetchpriority="high"
@@ -372,12 +381,61 @@
   <h2 class="section-title">Modul &amp; Subdomain</h2>
   <p class="section-desc">Satu domain utama <strong>pjujogja.id</strong>, terhubung ke subdomain layanan yang sedang dan akan dibangun.</p>
   <div class="modul-grid">
-    <div class="modul-card"><div class="modul-icon">📊</div><div class="modul-url">admin.pjujogja.id</div><h3>PIJAR Admin</h3><p>Ringkasan aset, status pemeliharaan, kinerja 4 tim pemeliharaan per sektor, dan pelaporan untuk Koordinator/Admin kantor UPT PJU.</p><div class="modul-badge"><span class="badge badge-live">● Live</span></div></div>
-    <div class="modul-card"><div class="modul-icon">📱</div><div class="modul-url">lapangan.pjujogja.id</div><h3>PIJAR Lapangan</h3><p>Formulir survei, pelaporan kerusakan, dan pembaruan status titik PJU langsung dari lokasi via tablet/HP oleh tim pemeliharaan sektor masing-masing.</p><div class="modul-badge"><span class="badge badge-live">● Live</span></div></div>
-    <div class="modul-card"><div class="modul-icon">📦</div><div class="modul-url">pins.pjujogja.id</div><h3>PINS</h3><p>Pencatatan Inventaris Sarana &amp; Suku Cadang — pelacakan stok tiang, lampu, panel, dan material pemeliharaan.</p><div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div></div>
-    <div class="modul-card"><div class="modul-icon">🗺️</div><div class="modul-url">peta.pjujogja.id</div><h3>Peta Aset PJU</h3><p>Visualisasi peta titik PJU se-Kota Yogyakarta berbasis Leaflet.js per sektor, lengkap status kondisi &amp; riwayat perbaikan.</p><div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div></div>
-    <div class="modul-card"><div class="modul-icon">⚙️</div><div class="modul-url">api.pjujogja.id</div><h3>PIJAR API</h3><p>Layanan API terpusat (Flask/FastAPI) yang menghubungkan seluruh modul PIJAR dengan MariaDB dan sistem eksternal.</p><div class="modul-badge"><span class="badge badge-live">● Live</span></div></div>
-    <div class="modul-card"><div class="modul-icon">📈</div><div class="modul-url">laporan.pjujogja.id</div><h3>Laporan Kinerja</h3><p>Rekap kinerja pemeliharaan per sektor, umur aset, dan indikator layanan PJU untuk mendukung pengambilan keputusan.</p><div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div></div>
+
+    <!-- LIVE: Admin -->
+    <a href="https://admin.pjujogja.id" target="_blank" rel="noopener" class="modul-card">
+      <div class="modul-icon">📊</div>
+      <div class="modul-url">admin.pjujogja.id</div>
+      <h3>PIJAR Admin</h3>
+      <p>Ringkasan aset, status pemeliharaan, kinerja 4 tim pemeliharaan per sektor, dan pelaporan untuk Koordinator/Admin kantor UPT PJU.</p>
+      <div class="modul-badge"><span class="badge badge-live">● Live</span></div>
+    </a>
+
+    <!-- LIVE: Lapangan -->
+    <a href="https://admin.pjujogja.id/lapangan" target="_blank" rel="noopener" class="modul-card">
+      <div class="modul-icon">📱</div>
+      <div class="modul-url">lapangan.pjujogja.id</div>
+      <h3>PIJAR Lapangan</h3>
+      <p>Formulir survei, pelaporan kerusakan, dan pembaruan status titik PJU langsung dari lokasi via tablet/HP oleh tim pemeliharaan sektor masing-masing.</p>
+      <div class="modul-badge"><span class="badge badge-live">● Live</span></div>
+    </a>
+
+    <!-- Coming Soon: PINS -->
+    <div class="modul-card">
+      <div class="modul-icon">📦</div>
+      <div class="modul-url">pins.pjujogja.id</div>
+      <h3>PINS</h3>
+      <p>Pencatatan Inventaris Sarana &amp; Suku Cadang — pelacakan stok tiang, lampu, panel, dan material pemeliharaan.</p>
+      <div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div>
+    </div>
+
+    <!-- Coming Soon: Peta -->
+    <div class="modul-card">
+      <div class="modul-icon">🗺️</div>
+      <div class="modul-url">peta.pjujogja.id</div>
+      <h3>Peta Aset PJU</h3>
+      <p>Visualisasi peta titik PJU se-Kota Yogyakarta berbasis Leaflet.js per sektor, lengkap status kondisi &amp; riwayat perbaikan.</p>
+      <div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div>
+    </div>
+
+    <!-- LIVE: API -->
+    <a href="https://api.pjujogja.id/api/health" target="_blank" rel="noopener" class="modul-card">
+      <div class="modul-icon">⚙️</div>
+      <div class="modul-url">api.pjujogja.id</div>
+      <h3>PIJAR API</h3>
+      <p>Layanan API terpusat (Flask/FastAPI) yang menghubungkan seluruh modul PIJAR dengan MariaDB dan sistem eksternal.</p>
+      <div class="modul-badge"><span class="badge badge-live">● Live</span></div>
+    </a>
+
+    <!-- Coming Soon: Laporan -->
+    <div class="modul-card">
+      <div class="modul-icon">📈</div>
+      <div class="modul-url">laporan.pjujogja.id</div>
+      <h3>Laporan Kinerja</h3>
+      <p>Rekap kinerja pemeliharaan per sektor, umur aset, dan indikator layanan PJU untuk mendukung pengambilan keputusan.</p>
+      <div class="modul-badge"><span class="badge badge-soon">Coming Soon</span></div>
+    </div>
+
   </div>
 </section>
 
@@ -406,7 +464,7 @@
 <footer>
   <div class="footer-brand">
     <img
-      src="/images/pijar_square.png"
+      src="https://pjujogja.id/images/pijar_square.png"
       alt="Logo PIJAR"
       loading="lazy"
       onerror="this.style.display='none'"
